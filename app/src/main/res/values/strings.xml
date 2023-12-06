@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">lab2phonedatabase</string>
+    <string name="clear_all_data">Clear All Data\n</string>
+    <string name="tvTitle">Phone DataBase\n</string>
 </resources>
