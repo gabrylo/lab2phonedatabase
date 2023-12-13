@@ -32,11 +32,9 @@ public class PhoneRepository {
             phoneDao.deletePhone(phone);
         });
     }
-    public void deleteAllPhones(List<Phone> phones) {
+    public void deleteAllPhones() {
         new Thread(() -> {
-            for (Phone phone : phones) {
-                phoneDao.deletePhone(phone);
-            }
+            phoneDao.deleteAllPhones();
         }).start();
     }
 

@@ -1,7 +1,9 @@
 package com.example.lab2phonedatabase;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -42,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
         adapter = new PhoneAdapter();
         recyclerView.setAdapter(adapter);
 
+        Toolbar toolbar = findViewById(R.id.tb_menu);
+        setSupportActionBar(toolbar);
+
+
         Button btClear = findViewById(R.id.btClear);
         btClear.setOnClickListener(view -> {
             // Wywołanie metody usuwającej bazę danych
@@ -71,12 +78,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void deleteAllPhonesFromDatabase() {
-        List<Phone> phones = adapter.getPhones();
-        if (phones != null && phones.size() > 0) {
-            for (Phone phone : phones) {
-                phoneRepository.deletePhone(phone);
-            }
-        }
+        phoneRepository.deleteAllPhones();
     }
 
 
@@ -88,25 +90,22 @@ public class MainActivity extends AppCompatActivity {
             // Dodaj inne telefony
         });
     }
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
-        return true;
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
     }
-
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+        public boolean onOptionsItemSelected(@NonNull MenuItem item){
         int id = item.getItemId();
-
-        if (id == R.id.clear_button) {
+        if(id == R.id.clear_database){
             deleteAllPhonesFromDatabase();
             return true;
-        } else {
-            return super.onOptionsItemSelected(item);
         }
+        return super.onOptionsItemSelected(item);
     }
+
+
 
 
 }

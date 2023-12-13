@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <item
-        android:title="@string/clear_all_data"
-        android:id="@+id/clear_item"
-        />
-    <item
-        android:id="@+id/clear_button"
-        android:title="wyczysc" />
-    <!-- Dodaj inne opcje menu tutaj -->
+     xmlns:app="http://schemas.android.com/apk/res-auto">
+<item
+    android:id="@+id/clear_database"
+    android:orderInCategory="100"
+    android:title="@string/clear_all_data"
+    app:showAsAction="never"
+    />
 </menu>
