@@ -66,10 +66,25 @@ public class InputPhone extends AppCompatActivity {
     }
 
 
+        private void savePhoneDetails() {
+            if (validateFields()) {
+                String phoneName = etPhoneName.getText().toString().trim();
+                String model = etModelPhone.getText().toString().trim();
+                String androidVersion = etAndroidVersion.getText().toString().trim();
+                String website = etWebSite.getText().toString().trim();
 
-    private void savePhoneDetails() {
+                // Tworzenie obiektu Phone na podstawie wprowadzonych danych
+                Phone newPhone = new Phone(phoneName, model, androidVersion, website);
 
-    }
+                // Pobieranie repozytorium i dodawanie nowego telefonu do bazy danych
+                PhoneRepository repository = new PhoneRepository(getApplication());
+                repository.insertPhone(newPhone);
+
+                // Jeśli chcesz wrócić do poprzedniej aktywności po zapisaniu danych, użyj finish()
+                finish();
+            }
+        }
+
 
     private void onCancelButtonClick() {
         finish();

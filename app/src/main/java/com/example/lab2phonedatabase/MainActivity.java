@@ -52,7 +52,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadPhonesFromRepository() {
         phoneRepository.getAllPhones().observe(this, phones -> {
-            adapter.setPhones(phones);
+            if (phones != null) {
+                adapter.setPhones(phones);
+                adapter.notifyDataSetChanged();
+            }
         });
     }
 
