@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.concurrent.Executors;
 
@@ -31,6 +34,13 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         loadPhonesFromRepository();
+
+        FloatingActionButton fab = findViewById(R.id.fabMain);
+        fab.setOnClickListener(view -> {
+            // Uruchomienie drugiej aktywności po kliknięciu FAB
+            Intent intent = new Intent(MainActivity.this, InputPhone.class);
+            startActivity(intent);
+        });
 
 
     }

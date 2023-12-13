@@ -1,133 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InputPhone">
+    android:padding="16dp">
 
-  <androidx.appcompat.widget.Toolbar
-      android:id="@+id/toolbar2"
-      android:layout_width="409dp"
-      android:layout_height="wrap_content"
-      android:background="?attr/colorPrimary"
-      android:minHeight="?attr/actionBarSize"
-      android:theme="?attr/actionBarTheme"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+  <TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvNamePhone"
+        android:padding="8dp" />
 
-  <TextView
-      android:id="@+id/tvNamePhone"
-      android:layout_width="wrap_content"
-      android:layout_height="45dp"
-      android:text="@string/tvNamePhone"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+    <EditText
+        android:id="@+id/etPhoneName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Name" />
+  </TableRow>
 
-  <TextView
-      android:id="@+id/tvModelPhone"
-      android:layout_width="wrap_content"
-      android:layout_height="40dp"
-      android:text="@string/tvModelPhone"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/tvNamePhone" />
+  <TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvModelPhone"
+        android:padding="8dp" />
 
-  <TextView
-      android:id="@+id/tvAndroidVersion"
-      android:layout_width="0dp"
-      android:layout_height="40dp"
-      android:text="@string/tvAndroidVersion"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/tvModelPhone" />
+    <EditText
+        android:id="@+id/etModelPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Name" />
+  </TableRow>
 
-  <TextView
-      android:id="@+id/tvWebSite"
-      android:layout_width="0dp"
-      android:layout_height="40dp"
-      android:text="@string/tvWebSite"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/tvAndroidVersion" />
+  <TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvAndroidVersion"
+        android:padding="8dp" />
 
-  <EditText
-      android:id="@+id/etPhoneName"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="16dp"
-      android:ems="10"
-      android:inputType="text"
-      android:text="Name"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toEndOf="@+id/tvNamePhone"
-      app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+    <EditText
+        android:id="@+id/etAndroidVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Name" />
+  </TableRow>
 
-  <EditText
-      android:id="@+id/etModelPhone"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="16dp"
-      android:ems="10"
-      android:inputType="text"
-      android:text="Name"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toEndOf="@+id/tvModelPhone"
-      app:layout_constraintTop_toBottomOf="@+id/etPhoneName" />
+  <TableRow>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvWebSite"
+        android:padding="8dp" />
 
-  <EditText
-      android:id="@+id/etAndroidVersion"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="8dp"
-      android:layout_marginEnd="16dp"
-      android:ems="10"
-      android:inputType="text"
-      android:text="Name"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toEndOf="@+id/tvAndroidVersion"
-      app:layout_constraintTop_toBottomOf="@+id/etModelPhone" />
+    <EditText
+        android:id="@+id/etWebSite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:inputType="text"
+        android:text="Name" />
 
-  <EditText
-      android:id="@+id/etWebSite"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="16dp"
-      android:ems="10"
-      android:inputType="text"
-      android:text="Name"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toEndOf="@+id/tvWebSite"
-      app:layout_constraintTop_toBottomOf="@+id/etAndroidVersion" />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-  <Button
-      android:id="@+id/btWebSite"
-      style="@style/Widget.AppCompat.Button"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="20dp"
-      android:text="Web Site"
-      app:layout_constraintEnd_toStartOf="@+id/btCancel"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/etWebSite" />
+    </TableLayout>
+  </TableRow>
 
-  <Button
-      android:id="@+id/btCancel"
-      style="@style/Widget.AppCompat.Button"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="20dp"
-      android:layout_marginEnd="24dp"
-      android:text="Cancel"
-      app:layout_constraintEnd_toStartOf="@+id/btSave"
-      app:layout_constraintTop_toBottomOf="@+id/etWebSite" />
 
-  <Button
-      android:id="@+id/btSave"
-      style="@style/Widget.AppCompat.Button"
-      android:layout_width="133dp"
-      android:layout_height="41dp"
-      android:layout_marginTop="24dp"
-      android:text="Save"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/etWebSite" />
+  <TableRow>
+    <Button
+        android:id="@+id/btWebSite"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Web Site" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/btCancel"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="130dp"
+        android:layout_height="match_parent"
+        android:text="Cancel" />
+
+    <Button
+        android:id="@+id/btSave"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="133dp"
+        android:layout_height="41dp"
+        android:text="Save" />
+  </TableRow>
+
+</TableLayout>
