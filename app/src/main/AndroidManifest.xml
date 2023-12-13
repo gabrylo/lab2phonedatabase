@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Lab2phonedatabase"
         tools:targetApi="31" >
         <activity
+            android:name=".InputPhone"
+            android:exported="false" />
+        <activity
+            android:name=".item_phone"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true" >
             <intent-filter>

@@ -2,4 +2,8 @@
     <string name="app_name">lab2phonedatabase</string>
     <string name="clear_all_data">Clear All Data\n</string>
     <string name="tvTitle">Phone DataBase\n</string>
+    <string name="tvNamePhone">Manufacturer</string>
+    <string name="tvModelPhone">Model\n</string>
+    <string name="tvAndroidVersion">Android Version\n</string>
+    <string name="tvWebSite">Web Site\n</string>
 </resources>
