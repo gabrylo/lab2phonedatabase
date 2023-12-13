@@ -6,4 +6,5 @@
     <string name="tvModelPhone">Model\n</string>
     <string name="tvAndroidVersion">Android Version\n</string>
     <string name="tvWebSite">Web Site\n</string>
+    <string name="phone_name_empty">Nazwa telefonu nie może być pusta</string>
 </resources>

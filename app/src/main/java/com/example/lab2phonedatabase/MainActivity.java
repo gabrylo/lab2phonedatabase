@@ -1,6 +1,8 @@
 package com.example.lab2phonedatabase;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private PhoneRepository phoneRepository;
     private RecyclerView recyclerView;
     private PhoneAdapter adapter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
     private void loadPhonesFromRepository() {
         phoneRepository.getAllPhones().observe(this, phones -> {
@@ -76,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
 
 }
