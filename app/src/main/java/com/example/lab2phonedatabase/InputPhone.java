@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewTreeViewModelKt;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -25,6 +26,13 @@ public class InputPhone extends AppCompatActivity {
         setContentView(R.layout.activity_input_phone);
         Button cancelButton = findViewById(R.id.btCancel);
         Button saveButton = findViewById(R.id.btSave);
+        Button websiteButton = findViewById(R.id.btWebSite);
+
+        etModelPhone = findViewById(R.id.etModelPhone);
+        etPhoneName = findViewById(R.id.etPhoneName);
+        etAndroidVersion = findViewById(R.id.etAndroidVersion);
+        etWebSite = findViewById(R.id.etWebSite);
+
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,10 +47,21 @@ public class InputPhone extends AppCompatActivity {
             }
         });
 
-        etModelPhone = findViewById(R.id.etModelPhone);
-        etPhoneName = findViewById(R.id.etPhoneName);
-        etAndroidVersion = findViewById(R.id.etAndroidVersion);
-        etWebSite = findViewById(R.id.etWebSite);
+        websiteButton.setOnClickListener(view -> {
+            String url = etWebSite.getText().toString().trim();
+            if (!url.isEmpty()) {
+                if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                    url = "http://" + url;
+                }
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            } else {
+                // Obsługa przypadku, gdy pole EditText jest puste
+                // Możesz wyświetlić komunikat użytkownikowi lub podjąć inne działania
+            }
+        });
+
+
     }
 
     private boolean validateFields() {

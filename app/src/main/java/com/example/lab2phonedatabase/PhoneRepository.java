@@ -38,6 +38,14 @@ public class PhoneRepository {
         }).start();
     }
 
+    public void addSamplePhones() {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            phoneDao.insertPhone(new Phone("Samsung", "Galaxy S21", "Android 12", "www.samsung.com"));
+            phoneDao.insertPhone(new Phone("Google", "Pixel 6", "Android 12", "www.store.google.com"));
+            // Możesz dodać inne przykładowe telefony
+        });
+    }
+
 
 
 }
