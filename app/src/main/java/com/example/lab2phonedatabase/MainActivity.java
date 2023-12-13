@@ -10,9 +10,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
 import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private PhoneRepository phoneRepository;
     private RecyclerView recyclerView;
     private PhoneAdapter adapter;
+    private Button btClear;
 
 
 
@@ -36,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new PhoneAdapter();
         recyclerView.setAdapter(adapter);
+
+        Button btClear = findViewById(R.id.btClear);
+        btClear.setOnClickListener(view -> {
+            // Wywołanie metody usuwającej bazę danych
+            deleteAllPhonesFromDatabase();
+        });
 
         loadPhonesFromRepository();
 
@@ -59,6 +68,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void deleteAllPhonesFromDatabase() {
+        List<Phone> phones = adapter.getPhones();
+        if (phones != null && phones.size() > 0) {
+            for (Phone phone : phones) {
+                phoneRepository.deletePhone(phone);
+            }
+        }
+    }
+
+
 
     private void addSamplePhones() {
         Executors.newSingleThreadExecutor().execute(() -> {
@@ -78,12 +97,14 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            // Tutaj dodaj obsługę kliknięcia na ikonę trzech kropek
+
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
 
 

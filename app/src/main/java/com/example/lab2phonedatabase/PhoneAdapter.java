@@ -20,6 +20,10 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.PhoneViewHol
         notifyDataSetChanged();
     }
 
+    public List<Phone> getPhones() {
+        return phones;
+    }
+
     @NonNull
     @Override
     public PhoneViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,6 +41,8 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.PhoneViewHol
     public int getItemCount() {
         return phones.size();
     }
+
+
 
     static class PhoneViewHolder extends RecyclerView.ViewHolder {
 

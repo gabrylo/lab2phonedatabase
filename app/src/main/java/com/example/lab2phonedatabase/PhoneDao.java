@@ -20,5 +20,5 @@ public interface PhoneDao {
     @Delete
     void deletePhone(Phone phone);
 
-
+    // Można dodać inne operacje CRUD (Update, Delete itp.)
 }

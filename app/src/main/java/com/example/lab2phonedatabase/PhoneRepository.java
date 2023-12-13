@@ -27,6 +27,19 @@ public class PhoneRepository {
             phoneDao.insertPhone(phone);
         });
     }
+    public void deletePhone(Phone phone){
+        Executors.newSingleThreadExecutor().execute(() -> {
+            phoneDao.deletePhone(phone);
+        });
+    }
+    public void deleteAllPhones(List<Phone> phones) {
+        new Thread(() -> {
+            for (Phone phone : phones) {
+                phoneDao.deletePhone(phone);
+            }
+        }).start();
+    }
+
 
 
 }
