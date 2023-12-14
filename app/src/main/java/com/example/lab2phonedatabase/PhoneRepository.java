@@ -46,6 +46,12 @@ public class PhoneRepository {
         });
     }
 
+    public void updatePhone(Phone phone){
+        new Thread(() -> {
+            phoneDao.updatePhone(phone);
+        }).start();
+    }
+
 
 
 }

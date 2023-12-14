@@ -12,18 +12,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.sax.Element;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 import java.util.concurrent.Executors;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements PhoneAdapter.OnPhoneClickListener {
 
     private PhoneDao phoneDao;
 
@@ -46,8 +48,12 @@ public class MainActivity extends AppCompatActivity {
         adapter = new PhoneAdapter();
         recyclerView.setAdapter(adapter);
 
+        adapter.setOnPhoneClickListener(this);
+
         Toolbar toolbar = findViewById(R.id.tb_menu);
         setSupportActionBar(toolbar);
+
+
 
 
         Button btClear = findViewById(R.id.btClear);
@@ -89,6 +95,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+    }
+
+    @Override
+    public void onPhoneClick(int position) {
+        // Obsługa kliknięcia na element
+        Phone clickedPhone = adapter.getPhones().get(position);
+        String message = "Clicked: " + clickedPhone.getManufacturer() + " " + clickedPhone.getModel();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -104,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
     private void deleteAllPhonesFromDatabase() {
         phoneRepository.deleteAllPhones();
     }
+
 
 
 

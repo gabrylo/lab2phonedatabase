@@ -14,10 +14,19 @@ import java.util.List;
 public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.PhoneViewHolder> {
 
     private List<Phone> phones = new ArrayList<>();
+    private OnPhoneClickListener onPhoneClickListener;
 
     public void setPhones(List<Phone> phones) {
         this.phones = phones;
         notifyDataSetChanged();
+    }
+
+    public interface OnPhoneClickListener {
+        void onPhoneClick(int position);
+    }
+
+    public void setOnPhoneClickListener(OnPhoneClickListener listener) {
+        this.onPhoneClickListener = listener;
     }
 
     public List<Phone> getPhones() {
@@ -35,6 +44,11 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.PhoneViewHol
     public void onBindViewHolder(@NonNull PhoneViewHolder holder, int position) {
         Phone phone = phones.get(position);
         holder.bind(phone);
+        holder.itemView.setOnClickListener(view -> {
+            if (onPhoneClickListener != null) {
+                onPhoneClickListener.onPhoneClick(position);
+            }
+        });
     }
 
     @Override
