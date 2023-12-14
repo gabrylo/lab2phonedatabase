@@ -27,7 +27,7 @@ public class PhoneRepository {
             phoneDao.insertPhone(phone);
         });
     }
-    public void deletePhone(Phone phone){
+    public void deletePhone(Phone phone) {
         Executors.newSingleThreadExecutor().execute(() -> {
             phoneDao.deletePhone(phone);
         });
