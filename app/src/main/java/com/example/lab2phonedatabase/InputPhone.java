@@ -97,24 +97,32 @@ public class InputPhone extends AppCompatActivity {
     }
 
 
-        private void savePhoneDetails() {
-            if (validateFields()) {
-                String phoneName = etPhoneName.getText().toString().trim();
-                String model = etModelPhone.getText().toString().trim();
-                String androidVersion = etAndroidVersion.getText().toString().trim();
-                String website = etWebSite.getText().toString().trim();
+    private void savePhoneDetails() {
+        if (validateFields()) {
+            String phoneName = etPhoneName.getText().toString().trim();
+            String model = etModelPhone.getText().toString().trim();
+            String androidVersion = etAndroidVersion.getText().toString().trim();
+            String website = etWebSite.getText().toString().trim();
 
-                // Tworzenie obiektu Phone na podstawie wprowadzonych danych
-                Phone newPhone = new Phone(phoneName, model, androidVersion, website);
+            Intent intent = getIntent();
+            if(intent != null && intent.hasExtra("EDIT_PHONE")) {
+                Phone phoneToEdit = (Phone) intent.getSerializableExtra("EDIT_PHONE");
 
-                // Pobieranie repozytorium i dodawanie nowego telefonu do bazy danych
+                // Aktualizacja istniejącego obiektu Phone z nowymi danymi
+                phoneToEdit.setManufacturer(phoneName);
+                phoneToEdit.setModel(model);
+                phoneToEdit.setAndroidVersion(androidVersion);
+                phoneToEdit.setWebsite(website);
+
+                // Aktualizacja danych w bazie za pomocą repozytorium
                 PhoneRepository repository = new PhoneRepository(getApplication());
-                repository.insertPhone(newPhone);
+                repository.updatePhone(phoneToEdit);
 
-                // Jeśli chcesz wrócić do poprzedniej aktywności po zapisaniu danych, użyj finish()
+                // Zakończenie aktywności
                 finish();
             }
         }
+    }
 
 
     private void onCancelButtonClick() {
