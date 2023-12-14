@@ -14,4 +14,10 @@ public class PhoneViewModel extends ViewModel {
         Phone phone = new Phone(manufacturer, model, androidVersion, website);
         phoneRepository.insertPhone(phone);
     }
+
+    public void updatePhone(String manufacturer, String model, String androidVersion, String website, int phoneId) {
+        Phone updatedPhone = new Phone(manufacturer, model, androidVersion, website);
+        updatedPhone.setId(phoneId); // Ustawienie ID telefonu, który chcemy zaktualizować
+        phoneRepository.updatePhone(updatedPhone);
+    }
 }

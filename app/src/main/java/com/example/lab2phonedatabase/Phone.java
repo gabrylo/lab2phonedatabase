@@ -4,8 +4,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "phones")
-public class Phone {
+public class Phone implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -21,13 +23,14 @@ public class Phone {
     @ColumnInfo(name = "website")
     private String website;
 
-    // Konstruktor
+    // Konstruktor bez ustawiania ID (automatycznie generowanego)
     public Phone(String manufacturer, String model, String androidVersion, String website) {
         this.manufacturer = manufacturer;
         this.model = model;
         this.androidVersion = androidVersion;
         this.website = website;
     }
+
 
     // Gettery i Settery dla pól
     public int getId() {

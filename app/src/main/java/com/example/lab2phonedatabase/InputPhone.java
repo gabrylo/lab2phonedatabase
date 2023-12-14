@@ -61,6 +61,18 @@ public class InputPhone extends AppCompatActivity {
             }
         });
 
+        Intent intent = getIntent();
+        if(intent != null && intent.hasExtra("EDIT_PHONE")) {
+            Phone phoneToEdit = (Phone) intent.getSerializableExtra("EDIT_PHONE");
+            etPhoneName.setText(phoneToEdit.getManufacturer());
+            etModelPhone.setText(phoneToEdit.getModel());
+            etAndroidVersion.setText(phoneToEdit.getAndroidVersion());
+            etWebSite.setText(phoneToEdit.getWebsite());
+
+        }
+
+
+
 
     }
 

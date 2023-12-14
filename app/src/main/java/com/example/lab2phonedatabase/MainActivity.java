@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements PhoneAdapter.OnPh
     private PhoneAdapter adapter;
     private Button btClear;
 
-
+    private static final int EDIT_PHONE_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +104,11 @@ public class MainActivity extends AppCompatActivity implements PhoneAdapter.OnPh
         Phone clickedPhone = adapter.getPhones().get(position);
         String message = "Clicked: " + clickedPhone.getManufacturer() + " " + clickedPhone.getModel();
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(MainActivity.this, InputPhone.class);
+        intent.putExtra("EDIT_PHONE", clickedPhone);
+        startActivityForResult(intent, EDIT_PHONE_REQUEST_CODE);
+
     }
 
 
