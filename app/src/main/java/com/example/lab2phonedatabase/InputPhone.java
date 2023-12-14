@@ -117,12 +117,20 @@ public class InputPhone extends AppCompatActivity {
                 // Aktualizacja danych w bazie za pomocą repozytorium
                 PhoneRepository repository = new PhoneRepository(getApplication());
                 repository.updatePhone(phoneToEdit);
+            } else {
+                // Tworzenie obiektu Phone na podstawie wprowadzonych danych
+                Phone newPhone = new Phone(phoneName, model, androidVersion, website);
 
-                // Zakończenie aktywności
-                finish();
+                // Dodawanie nowego telefonu do bazy danych
+                PhoneRepository repository = new PhoneRepository(getApplication());
+                repository.insertPhone(newPhone);
             }
+
+            // Zakończenie aktywności
+            finish();
         }
     }
+
 
 
     private void onCancelButtonClick() {
