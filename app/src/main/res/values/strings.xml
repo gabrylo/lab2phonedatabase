@@ -7,4 +7,7 @@
     <string name="tvAndroidVersion">Android Version\n</string>
     <string name="tvWebSite">Web Site\n</string>
     <string name="phone_name_empty">Nazwa telefonu nie może być pusta</string>
+    <string name="web_site">Web Site</string>
+    <string name="bt_cancel">Cancel</string>
+    <string name="bt_save">Save</string>
 </resources>

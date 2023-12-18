@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements PhoneAdapter.OnPh
     private PhoneRepository phoneRepository;
     private RecyclerView recyclerView;
     private PhoneAdapter adapter;
-    private Button btClear;
+
 
     private static final int EDIT_PHONE_REQUEST_CODE = 1;
 
@@ -56,11 +56,7 @@ public class MainActivity extends AppCompatActivity implements PhoneAdapter.OnPh
 
 
 
-        Button btClear = findViewById(R.id.btClear);
-        btClear.setOnClickListener(view -> {
-            // Wywołanie metody usuwającej bazę danych
-            deleteAllPhonesFromDatabase();
-        });
+
 
         loadPhonesFromRepository();
 
@@ -128,13 +124,6 @@ public class MainActivity extends AppCompatActivity implements PhoneAdapter.OnPh
 
 
 
-    private void addSamplePhones() {
-        Executors.newSingleThreadExecutor().execute(() -> {
-            phoneDao.insertPhone(new Phone("Samsung", "Galaxy S21", "Android 12", "www.samsung.com"));
-            phoneDao.insertPhone(new Phone("Google", "Pixel 6", "Android 12", "www.store.google.com"));
-            // Dodaj inne telefony
-        });
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.main, menu);

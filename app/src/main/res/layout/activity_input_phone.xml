@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
@@ -71,27 +73,43 @@
   </TableRow>
 
 
-  <TableRow>
+  <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/tableRow">
+
     <Button
         android:id="@+id/btWebSite"
         style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Web Site" />
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/web_site"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btCancel"
+        app:layout_constraintEnd_toStartOf="@+id/btCancel"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btCancel"
         style="@style/Widget.AppCompat.Button"
-        android:layout_width="130dp"
-        android:layout_height="match_parent"
-        android:text="Cancel" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="@string/bt_cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btSave"
+        app:layout_constraintStart_toEndOf="@+id/btWebSite" />
 
     <Button
         android:id="@+id/btSave"
         style="@style/Widget.AppCompat.Button"
-        android:layout_width="133dp"
-        android:layout_height="41dp"
-        android:text="Save" />
-  </TableRow>
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:text="@string/bt_save"
+        app:layout_constraintBottom_toBottomOf="@+id/btCancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btCancel"
+        app:layout_constraintTop_toTopOf="@+id/btCancel" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
 
 </TableLayout>

@@ -39,14 +39,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/btClear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="28dp"
-        android:text="Button"
-        app:layout_constraintEnd_toStartOf="@+id/fabMain"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
