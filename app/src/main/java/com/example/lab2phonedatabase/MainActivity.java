@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements PhoneAdapter.OnPh
     private RecyclerView recyclerView;
     private PhoneAdapter adapter;
 
+    private PhoneViewModel phoneViewModel;
 
     private static final int EDIT_PHONE_REQUEST_CODE = 1;
 
@@ -40,6 +41,9 @@ public class MainActivity extends AppCompatActivity implements PhoneAdapter.OnPh
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        phoneViewModel = new ViewModelProvider(this).get(PhoneViewModel.class);
 
         phoneRepository = new PhoneRepository(getApplication());
 
@@ -58,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements PhoneAdapter.OnPh
 
 
 
-        loadPhonesFromRepository();
+        loadPhonesFromViewModel();
 
         FloatingActionButton fab = findViewById(R.id.fabMain);
         fab.setOnClickListener(view -> {
@@ -82,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements PhoneAdapter.OnPh
                 Phone phoneToDelete = adapter.getPhones().get(position);
 
                 // Usunięcie telefonu z bazy danych po przeciągnięciu w lewo lub w prawo
-                phoneRepository.deletePhone(phoneToDelete);
+                phoneViewModel.deletePhone(phoneToDelete);
             }
         };
 
@@ -92,6 +96,16 @@ public class MainActivity extends AppCompatActivity implements PhoneAdapter.OnPh
 
 
 
+
+    }
+
+    private void loadPhonesFromViewModel() {
+        phoneViewModel.getAllPhones().observe(this, phones -> {
+            if (phones != null) {
+                adapter.setPhones(phones);
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -121,6 +135,11 @@ public class MainActivity extends AppCompatActivity implements PhoneAdapter.OnPh
         phoneRepository.deleteAllPhones();
     }
 
+    private void deleteAllPhonesFromViewModel() {
+        phoneViewModel.deleteAllPhones();
+    }
+
+
 
 
 
@@ -133,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements PhoneAdapter.OnPh
         public boolean onOptionsItemSelected(@NonNull MenuItem item){
         int id = item.getItemId();
         if(id == R.id.clear_database){
-            deleteAllPhonesFromDatabase();
+            deleteAllPhonesFromViewModel();
             return true;
         }
         return super.onOptionsItemSelected(item);
