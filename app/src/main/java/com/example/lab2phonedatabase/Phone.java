@@ -23,7 +23,7 @@ public class Phone implements Serializable {
     @ColumnInfo(name = "website")
     private String website;
 
-    // Konstruktor bez ustawiania ID (automatycznie generowanego)
+
     public Phone(String manufacturer, String model, String androidVersion, String website) {
         this.manufacturer = manufacturer;
         this.model = model;
@@ -32,7 +32,7 @@ public class Phone implements Serializable {
     }
 
 
-    // Gettery i Settery dla pól
+
     public int getId() {
         return id;
     }

@@ -1,7 +1,6 @@
 package com.example.lab2phonedatabase;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
@@ -9,21 +8,15 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.sax.Element;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.List;
-import java.util.concurrent.Executors;
+
 
 public class MainActivity extends AppCompatActivity implements PhoneAdapter.OnPhoneClickListener {
 
@@ -47,32 +40,49 @@ public class MainActivity extends AppCompatActivity implements PhoneAdapter.OnPh
 
         phoneRepository = new PhoneRepository(getApplication());
 
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new PhoneAdapter();
-        recyclerView.setAdapter(adapter);
+        initViews();
 
         adapter.setOnPhoneClickListener(this);
 
-        Toolbar toolbar = findViewById(R.id.tb_menu);
-        setSupportActionBar(toolbar);
-
-
-
+        setupToolbar();
 
 
 
         loadPhonesFromViewModel();
 
-        FloatingActionButton fab = findViewById(R.id.fabMain);
-        fab.setOnClickListener(view -> {
-            // Uruchomienie drugiej aktywności po kliknięciu FAB
-            Intent intent = new Intent(MainActivity.this, InputPhone.class);
-            startActivity(intent);
-        });
+        setupFloatingActionButton();
 
         phoneRepository.addSamplePhones();
 
+
+        setupSwipeToDelete();
+
+    }
+
+
+
+    private void setupToolbar() {
+        Toolbar toolbar = findViewById(R.id.tb_menu);
+        setSupportActionBar(toolbar);
+    }
+
+    private void initViews() {
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new PhoneAdapter();
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void loadPhonesFromViewModel() {
+        phoneViewModel.getAllPhones().observe(this, phones -> {
+            if (phones != null) {
+                adapter.setPhones(phones);
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    private void setupSwipeToDelete() {
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(
                 0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -84,28 +94,21 @@ public class MainActivity extends AppCompatActivity implements PhoneAdapter.OnPh
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
                 Phone phoneToDelete = adapter.getPhones().get(position);
-
-                // Usunięcie telefonu z bazy danych po przeciągnięciu w lewo lub w prawo
                 phoneViewModel.deletePhone(phoneToDelete);
             }
         };
 
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
-
-
-
-
-
-
     }
 
-    private void loadPhonesFromViewModel() {
-        phoneViewModel.getAllPhones().observe(this, phones -> {
-            if (phones != null) {
-                adapter.setPhones(phones);
-                adapter.notifyDataSetChanged();
-            }
-        });
+    private void setupFloatingActionButton() {
+        FloatingActionButton fab = findViewById(R.id.fabMain);
+        fab.setOnClickListener(view -> startInputPhoneActivity());
+    }
+
+    private void startInputPhoneActivity() {
+        Intent intent = new Intent(MainActivity.this, InputPhone.class);
+        startActivity(intent);
     }
 
     @Override
@@ -122,26 +125,9 @@ public class MainActivity extends AppCompatActivity implements PhoneAdapter.OnPh
     }
 
 
-    private void loadPhonesFromRepository() {
-        phoneRepository.getAllPhones().observe(this, phones -> {
-            if (phones != null) {
-                adapter.setPhones(phones);
-                adapter.notifyDataSetChanged();
-            }
-        });
-    }
-
-    private void deleteAllPhonesFromDatabase() {
-        phoneRepository.deleteAllPhones();
-    }
-
     private void deleteAllPhonesFromViewModel() {
         phoneViewModel.deleteAllPhones();
     }
-
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){

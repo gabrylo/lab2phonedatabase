@@ -102,7 +102,7 @@
         android:id="@+id/btSave"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
         android:text="@string/bt_save"

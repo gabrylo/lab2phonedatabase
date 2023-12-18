@@ -10,4 +10,8 @@
     <string name="web_site">Web Site</string>
     <string name="bt_cancel">Cancel</string>
     <string name="bt_save">Save</string>
+    <string name="phone_model_empty">Model telefonu nie może być pusty</string>
+    <string name="phone_version_empty">Wersja Androida nie może być pusta</string>
+    <string name="phone_website_empty">Adres strony internetowej nie może być pusty</string>
+    <string name="website_field_is_empty">Website field is empty</string>
 </resources>
